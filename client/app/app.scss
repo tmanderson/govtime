@@ -8,11 +8,15 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
  */
 
 #map {
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   width: 100%;
   z-index: 0;
+}
+
+[ui-view] {
+  pointer-events: none;
 }
 
 .browserupgrade {
@@ -28,6 +32,8 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
     max-width: 730px;
   }
 }
+
+@import url(https://fonts.googleapis.com/css?family=UnifrakturMaguntia);
 
 // Component styles are injected through grunt
 // injector

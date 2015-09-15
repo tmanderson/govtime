@@ -5,17 +5,15 @@ angular.module('govtimeApp', [
   'ngResource',
   'ngSanitize',
   'ui.router',
-  'ngMaterial'
+  'ngMaterial',
+  'angularMoment'
 ])
   .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/');
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
   })
-  .factory('map', function() {
-    L.mapbox.accessToken = 'pk.eyJ1IjoidG1hbmRlcnNvbiIsImEiOiI0MTZYSWpZIn0.6m4OASQYYp9RvjtlAPaTZg';
-    return L.mapbox.map('map', 'tmanderson.0cf325b2');
-  })
+  .constant('apikey', '878706002cd6425690499564e5c56da6')
   .factory('authInterceptor', function($rootScope, $q, $cookies, $injector) {
     var state;
     return {
@@ -42,7 +40,7 @@ angular.module('govtimeApp', [
       }
     };
   })
-  .run(function($rootScope, $state, Auth) {
+  .run(function($rootScope, $state, Auth, map) {
     // Redirect to login if route requires auth and the user is not logged in
     $rootScope.$on('$stateChangeStart', function(event, next) {
       if (next.authenticate) {
