@@ -1,14 +1,7 @@
-md-toolbar(layout="row")
-  div(class="md-toolbar-tools")
-    md-button(class="md-icon-button" aria-label="Settings")
-      md-icon(class="material-icons") menu
-    h2(flex) Your Congress
+#view-main(layout="column" layout-fill flex)
+  #map
 
-    md-button(class="md-icon-button" aria-label="More")
-      md-icon(class="material-icons") more_vert
-
-md-content.md-padding(layout="row")
-  md-content.md-padding(layout="column", flex="33")
+  md-content.md-padding(layout="column", flex="33", ng-hide="true")
     h2.md-title Bills
     md-divider
     md-list

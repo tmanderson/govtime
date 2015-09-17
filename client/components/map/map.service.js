@@ -5,7 +5,7 @@ angular.module('govtimeApp')
     var map, state;
 
     L.mapbox.accessToken = 'pk.eyJ1IjoidG1hbmRlcnNvbiIsImEiOiI0MTZYSWpZIn0.6m4OASQYYp9RvjtlAPaTZg';
-    map = L.mapbox.map('map', 'tmanderson.0cf325b2').setView([ 37.8, -96 ], 4);
+    map = L.mapbox.map('map', 'mapbox.streets', { zoomControl: false }).setView([ 33, -96 ], 4);
 
     map.dragging.disable();
     map.touchZoom.disable();

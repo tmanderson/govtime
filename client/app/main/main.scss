@@ -1,22 +1,21 @@
-md-toolbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-
-  h2[flex] {
-    font-family: 'UnifrakturMaguntia', cursive;
-    font-size: 2em;
-    text-align: center;
+#view-main {
+  #map {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 100vw;
   }
-}
 
-[ui-view] > md-content {
-  background-color: transparent;
-  margin-top: 64px;
+  & > md-content {
+    background-color: transparent;
+    pointer-events: none;
 
-  md-content {
-    background-color: #FFF;
-    pointer-events: all;
+    & > * {
+      pointer-events: all;
+    }
+
+    md-content {
+      background-color: #FFF;
+    }
   }
 }

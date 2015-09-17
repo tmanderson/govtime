@@ -5,7 +5,19 @@ angular.module('govtimeApp')
     $stateProvider
       .state('main', {
         url: '/',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl'
+        views: {
+          header: {
+            controller: 'HeaderCtrl',
+            templateUrl: 'components/header/header.html'
+          },
+          content: {
+            controller: 'MainCtrl',
+            templateUrl: 'app/main/main.html'
+          },
+          footer: {
+            controller: 'FooterCtrl',
+            templateUrl: 'components/footer/footer.html'
+          }
+        }
       });
   });

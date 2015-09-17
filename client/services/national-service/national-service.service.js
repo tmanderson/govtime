@@ -12,7 +12,13 @@ angular.module('govtimeApp')
       return angular.fromJson(data).results;
     }
 
-    return $resource(host, { apikey: apikey }, {
+    return $resource(host, { apikey: apikey, per_page: 10 }, {
+      info: {
+        url: '/api/info',
+        method: 'get',
+        isArray: false
+      },
+
       hearings: {
         url: requestPath('/hearings'),
         method: 'get',

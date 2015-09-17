@@ -1,6 +1,40 @@
-footer.footer {
-  text-align: center;
-  padding: 30px 0;
-  margin-top: 70px;
-  border-top: 1px solid #E5E5E5;
+[ui-view="footer"] {
+  z-index: 1;
+
+  md-content {
+    background-color: transparent;
+
+    md-card {
+      transition: all 250ms ease;
+
+      &[data-chamber="house"] {
+        border-top: rgba(255, 91, 0, 1) 4px solid;
+      }
+
+      &[data-chamber="senate"] {
+        border-top: rgba(16, 181, 248, 1) 4px solid;
+      }
+
+      max-width: 33vw;
+
+      md-card-content {
+        .timestamp {
+          text-align: left;
+        }
+
+        .update-text {
+          white-space: nowrap;
+          overflow: hidden;
+          max-width: 28vw
+        }
+      }
+
+      &.expanded {
+        .update-text {
+          white-space: normal;
+          overflow: visible;
+        }
+      }
+    }
+  }
 }

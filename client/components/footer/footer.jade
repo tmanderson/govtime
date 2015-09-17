@@ -1,7 +1,12 @@
-.container
-  p
-    | Angular Fullstack v3.0.0-rc4
-    = ' | '
-    a(href='https://twitter.com/tyhenkel') @tyhenkel
-    = ' | '
-    a(href='https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open') Issues
+h3 Floor Updates
+
+md-content(layout="row" flex layout-align="start end")
+  md-card.md-whiteframe-z2(
+    ng-repeat="update in updates"
+    flex="33"
+    data-chamber="{{ update.chamber }}"
+    ng-click="(update.expanded = !update.expanded)"
+    ng-class="{expanded: update.expanded}")
+    md-card-content(layout="column" layout-align="start start")
+      strong.timestamp(flex="20" am-time-ago="update.timestamp")
+      .update-text(flex) {{ update.update }}

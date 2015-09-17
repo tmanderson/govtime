@@ -30,8 +30,11 @@
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <!-- Add your site or application content here -->
-    <div id="map"></div>
-    <div ui-view="" layout="column"></div>
+    <md-content layout="column" layout-fill>
+      <header ui-view="header" layout="row" layout-align="end center"></header>
+      <content ui-view="content" layout="column" flex></content>
+      <footer ui-view="footer" flex="10"></footer>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
@@ -77,12 +80,15 @@
       <script src="app/main/main.js"></script>
       <script src="components/auth/auth.service.js"></script>
       <script src="components/auth/user.service.js"></script>
-      <script src="components/footer/footer.directive.js"></script>
+      <script src="components/footer/footer.controller.js"></script>
+      <script src="components/gov-ticker/gov-ticker.directive.js"></script>
+      <script src="components/header/header.controller.js"></script>
       <script src="components/map/map.service.js"></script>
       <script src="components/mongoose-error/mongoose-error.directive.js"></script>
       <script src="components/navbar/navbar.controller.js"></script>
       <script src="components/navbar/navbar.directive.js"></script>
       <script src="services/geo-service/geo-service.service.js"></script>
+      <script src="services/info-service/info-service.service.js"></script>
       <script src="services/national-service/national-service.service.js"></script>
       <script src="services/state-service/state-service.service.js"></script>
       <!-- endinjector -->
