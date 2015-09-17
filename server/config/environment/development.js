@@ -5,7 +5,7 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/govtime-dev'
+    uri: 'mongodb://heroku_tj3f1v47:vj4getrobgal4f7tv6j2bi5u6g@ds033143.mongolab.com:33143/heroku_tj3f1v47'
   },
   sequelize: {
     uri: 'sqlite://',
@@ -18,5 +18,5 @@ module.exports = {
     }
   },
 
-  seedDB: true
+  seedDB: false
 };
