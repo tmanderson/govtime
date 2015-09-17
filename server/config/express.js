@@ -51,7 +51,13 @@ module.exports = function(app) {
     app.use(morgan('dev'));
   }
 
-  if ('development' === env || 'test' === env) {
+  if ('development' === env) {
+    app.use(favicon(path.join(config.root, 'client', 'favicon.ico')));
+    app.use(express.static(app.get('appPath')));
+    app.use(morgan('dev'));
+  }
+
+  if ('local' === env || 'test' === env) {
     app.use(require('connect-livereload')());
     app.use(express.static(path.join(config.root, '.tmp')));
     app.use(express.static(app.get('appPath')));
