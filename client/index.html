@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
+      <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
       <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
       <link rel="stylesheet" href="bower_components/mapbox.js/mapbox.css" />
       <!-- endbower -->
@@ -54,6 +55,8 @@
     <!-- build:js({client,node_modules}) app/vendor.js -->
       <!-- bower:js -->
       <script src="bower_components/angular/angular.js"></script>
+      <script src="bower_components/Chart.js/Chart.js"></script>
+      <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
       <script src="bower_components/angular-cookies/angular-cookies.js"></script>
       <script src="bower_components/angular-animate/angular-animate.js"></script>
       <script src="bower_components/angular-aria/angular-aria.js"></script>
@@ -63,7 +66,7 @@
       <script src="bower_components/angular-resource/angular-resource.js"></script>
       <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-      <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+      <script src="bower_components/lodash/lodash.js"></script>
       <script src="bower_components/mapbox.js/mapbox.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
@@ -83,10 +86,13 @@
       <script src="components/footer/footer.controller.js"></script>
       <script src="components/gov-ticker/gov-ticker.directive.js"></script>
       <script src="components/header/header.controller.js"></script>
+      <script src="components/id-card/id-card.directive.js"></script>
       <script src="components/map/map.service.js"></script>
       <script src="components/mongoose-error/mongoose-error.directive.js"></script>
       <script src="components/navbar/navbar.controller.js"></script>
       <script src="components/navbar/navbar.directive.js"></script>
+      <script src="components/region-card/region-card.directive.js"></script>
+      <script src="components/vote-card/vote-card.directive.js"></script>
       <script src="services/geo-service/geo-service.service.js"></script>
       <script src="services/info-service/info-service.service.js"></script>
       <script src="services/national-service/national-service.service.js"></script>

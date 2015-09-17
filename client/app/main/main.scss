@@ -1,21 +1,19 @@
-#view-main {
-  #map {
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    width: 100vw;
-  }
+#map {
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
 
-  & > md-content {
-    background-color: transparent;
+#view-main {
+  background-color: transparent;
+  pointer-events: none;
+
+  md-content {
     pointer-events: none;
 
-    & > * {
+    *:not(md-content) {
       pointer-events: all;
-    }
-
-    md-content {
-      background-color: #FFF;
     }
   }
 }

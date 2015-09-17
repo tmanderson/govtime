@@ -1,0 +1,12 @@
+md-content.md-whiteframe-z2.md-padding(layout="column")
+  h2 {{ regionName }}
+  md-content(layout="row")
+    .party-diversity(ng-repeat="chamber in chambers" flex="50")
+      h3 {{ chamber.name }}
+      canvas.char.chart-pie(
+        width="125"
+        height="125"
+        chart-data="chamber.members"
+        chart-labels="chamber.parties"
+        chart-colours="chamber.colours"
+        chart-options="{ responsive: true, maintainAspectRatio: false }" )

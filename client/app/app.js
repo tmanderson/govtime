@@ -6,7 +6,8 @@ angular.module('govtimeApp', [
   'ngSanitize',
   'ui.router',
   'ngMaterial',
-  'angularMoment'
+  'angularMoment',
+  'chart.js'
 ])
   .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/');

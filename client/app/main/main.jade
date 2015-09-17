@@ -1,15 +1,5 @@
-#view-main(layout="column" layout-fill flex)
-  #map
+#map
 
-  md-content.md-padding(layout="column", flex="33", ng-hide="true")
-    h2.md-title Bills
-    md-divider
-    md-list
-      md-subheader.md-no-sticky House
-      md-list-item.md-3-line(ng-repeat="bill in bills")
-        .md-list-item-text(layout="column")
-          h3 {{ bill.introduced_on | amCalendar }}
-          h4 {{ bill.number }}
-          h5 {{ bill.short_title || bill.official_title }}
-
-          p {{ item.notes }}
+md-content#view-main.md-padding(layout="column" layout-fill flex)
+  div(layout="row" flex="25")
+    region-card

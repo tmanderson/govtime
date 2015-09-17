@@ -13,6 +13,8 @@ module.exports = function(config) {
     files: [
       // bower:js
       'client/bower_components/angular/angular.js',
+      'client/bower_components/Chart.js/Chart.js',
+      'client/bower_components/angular-chart.js/dist/angular-chart.js',
       'client/bower_components/angular-cookies/angular-cookies.js',
       'client/bower_components/angular-animate/angular-animate.js',
       'client/bower_components/angular-aria/angular-aria.js',
@@ -22,7 +24,7 @@ module.exports = function(config) {
       'client/bower_components/angular-resource/angular-resource.js',
       'client/bower_components/angular-sanitize/angular-sanitize.js',
       'client/bower_components/angular-ui-router/release/angular-ui-router.js',
-      'client/bower_components/lodash/dist/lodash.compat.js',
+      'client/bower_components/lodash/lodash.js',
       'client/bower_components/mapbox.js/mapbox.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower

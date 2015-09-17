@@ -108,8 +108,8 @@ module.exports = function (grunt) {
         }
       },
       bower: {
-        files: ['bower.json'],
-        tasks: ['wiredep']
+        files: [ 'bower.json' ],
+        tasks: [ 'wiredep' ]
       },
     },
 

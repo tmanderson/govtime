@@ -13,6 +13,7 @@ angular.module('govtimeApp')
     }
 
     return $resource(host, { apikey: apikey, per_page: 10 }, {
+
       info: {
         url: '/api/info',
         method: 'get',
