@@ -60,16 +60,20 @@ angular.module('govtimeApp')
     }
 
     function zoomToFeature(e) {
-      var abbr = e.target.feature.properties.abbr;
+      var selected = e.target.feature.properties;
 
-      map.fitBounds(e.target.getBounds());
+      if(state && selected.abbr !== state) return;
+
       fadeStyleForLayerFromTo(e.target, 0.4, 1);
-
-      state = state ? null : abbr;
-      $rootScope.context = state;
+      state = state ? null : selected.abbr;
 
       if(!state) {
         map.setView([37.8, -96], 4);
+        $rootScope.region = 'national';
+      }
+      else {
+        map.fitBounds(e.target.getBounds());
+        $rootScope.region = selected.name;
       }
     }
 

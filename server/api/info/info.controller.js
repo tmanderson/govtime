@@ -1,25 +1,24 @@
 'use strict';
 
 var _ = require('lodash');
-var wiki = require('../../services/wiki');
 var Info = require('./info.model');
+var wiki = require('../../services/wiki');
 
 // Get list of infos
 exports.index = function(req, res) {
-  wiki.get('United States of America')
-    .then(function(article) {
-      res.status(200).json(article);
-    }, function(article) {
-      res.status(404).end();
-    });
+  wiki.get('United States').then(function(info) {
+    res.status(200).json(info);
+  }, function(err) {
+    res.status(500).json(err);
+  });
 };
 
 // Get a single info
 exports.show = function(req, res) {
-  Info.findById(req.params.id, function (err, info) {
-    if(err) { return handleError(res, err); }
-    if(!info) { return res.status(404).send('Not Found'); }
-    return res.json(info);
+  wiki.get(req.params.id).then(function(info) {
+    res.status(200).json(info);
+  }, function(err) {
+    res.status(500).json(err);
   });
 };
 

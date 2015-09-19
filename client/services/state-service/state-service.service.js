@@ -1,28 +1,37 @@
 'use strict';
 
 angular.module('govtimeApp')
-  .service('StateService', function ($http) {
-    var host = 'http://openstates.org/api/v1';
+  .service('StateService', function ($resource, apikey) {
 
-    function requestPath() {
-      return host + _.toArray(arguments).join('/');
-    }
-
-    return {
-      metadata: function(stateAbbr) {
-        return $http.get(requestPath('/metadata', stateAbbr));
+    return $resource('/', { apikey: apikey }, {
+      metadata: {
+        type: 'get',
+        url: '/api/states/metadata/:state'
       },
-
-      bills: function(stateAbbr) {
-        return $http.get(requestPath('/bills', stateAbbr));
+      info: {
+        type: 'get',
+        url: '/api/info/:state'
       },
-
-      legislators: function(legislatorId) {
-        return $http.get(requestPath('/legislators', legislatorId));
+      bills: {
+        type: 'get',
+        url: '/api/states/bills/:state'
       },
-
-      committees: function(committeeId) {
-        return $http.get(requestPath('/committees', committeeId));
+      legislators: {
+        type: 'get',
+        url: '/api/states/legislators/:id',
+        isArray: true
+      },
+      committees: {
+        type: 'get',
+        url: '/api/states/committees'
+      },
+      events: {
+        type: 'get',
+        url: '/api/states/events/:state'
+      },
+      district: {
+        type: 'get',
+        url: '/api/states/districts'
       }
-    }
+    });
   });

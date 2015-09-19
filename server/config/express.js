@@ -58,7 +58,7 @@ module.exports = function(app) {
   }
 
   if ('local' === env || 'test' === env) {
-    app.use(require('connect-livereload')());
+    // app.use(require('connect-livereload')());
     app.use(express.static(path.join(config.root, '.tmp')));
     app.use(express.static(app.get('appPath')));
     app.use(morgan('dev'));

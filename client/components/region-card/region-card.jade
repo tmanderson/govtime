@@ -1,5 +1,6 @@
 md-content.md-whiteframe-z2.md-padding(layout="column")
-  h2 {{ regionName }}
+  h2 {{ region.name }}
+  md-divider
   md-content(layout="row")
     .party-diversity(ng-repeat="chamber in chambers" flex="50")
       h3 {{ chamber.name }}
@@ -10,3 +11,29 @@ md-content.md-whiteframe-z2.md-padding(layout="column")
         chart-labels="chamber.parties"
         chart-colours="chamber.colours"
         chart-options="{ responsive: true, maintainAspectRatio: false }" )
+
+  md-content
+    md-list(ng-hide="region.abbr === 'usa'")
+      md-list-item
+        .md-list-item-text
+          strong Governor
+          br
+          span {{ info.governor }}
+      md-list-item
+        .md-list-item-text
+          strong Ltn Governor
+          br
+          span {{ info.lieutenantGovernor }}
+      md-list-item(ng-repeat="senator in info.uSSenators")
+        .md-list-item-text
+          strong Senator
+          br
+          span {{ senator }}
+
+  md-content(ng-hide="region.abbr === 'usa'")
+    md-divider
+    md-list-item
+      .md-list-item-text
+        strong Median Household Income
+        br
+        span {{ info.medianHouseholdIncome }}

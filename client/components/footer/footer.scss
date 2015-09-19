@@ -1,4 +1,8 @@
 [ui-view="footer"] {
+  bottom: 82px;
+  position: fixed;
+  left: 0;
+  right: 0;
   z-index: 1;
 
   md-content {

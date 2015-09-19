@@ -20,6 +20,10 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
   }
 }
 
+[ui-view="content"] {
+  overflow: scroll;
+}
+
 @import url(https://fonts.googleapis.com/css?family=UnifrakturMaguntia);
 
 // Component styles are injected through grunt
@@ -32,5 +36,6 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 @import '../components/header/header.scss';
 @import '../components/id-card/id-card.scss';
 @import '../components/region-card/region-card.scss';
+@import '../components/region-map/region-map.scss';
 @import '../components/vote-card/vote-card.scss';
 // endinjector

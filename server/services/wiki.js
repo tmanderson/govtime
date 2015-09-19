@@ -1,64 +1,68 @@
 var _ = require('lodash');
 var b = require('bluebird');
-var jsdom = require('jsdom');
-var infobox = require('wiki-infobox');
-var WikiFetch = require('wikifetch').WikiFetch;
-var fs = require('fs')
-var deferred, wiki;
+var req = require('request');
+var cheerio = require('cheerio');
+var deferred;
 
-var fn = '$.fn.findDeepest = function() { var results = []; this.each(function() { var deepLevel = 0; var deepNode = this; treeWalkFast(this, function(node, level) { if (level > deepLevel) { deepLevel = level; deepNode = node; } }); results.push(deepNode); }); return this.pushStack(results);};';
+function cleanText(text) {
+  return _.trim(
+    text.replace(/\[[\d\w]+\]/g, '')
+      .replace(/\n\r\t•/g, '')
+        .replace(/^\s*[-•]|[-•]\s*$/g, '') );
+}
 
 function getInfo(title, callback) {
-  jsdom.env({
-    url: 'https://en.wikipedia.org/wiki/' + _.snakeCase(title),
-    src: [ fs.readFileSync('node_modules/jquery/dist/jquery.js').toString() + fn ],
-    done: function(err, window) {
-      var $this, $children, entry, mergedEls, key;
-      var $ = window.$, j = 0, output = {};
+  req.get('https://en.wikipedia.org/wiki/' + title, function(err, res, body) {
+    var $ = cheerio.load(body);
+    var section, cells, subsec, text;
+    var output = {};
 
-      $('table.infobox > tbody > tr').each(function(i) {
-        if(i < j) return;
+    /**
+     * parses the `vcard infobox` (the main wikipedia infobox, the first one),
+     * and attempts to consistently format most US national and state pages.
+     */
+    $('table.infobox.vcard').each(function() {
+      var $this = $(this);
+      output.title = title;
 
-        $this = $(this);
-        $children = $this.children();
-        key = _.trim($children[0].textContent);
-        entry = [];
+      $this.find('tr th:first-child, tr td[colspan], tr.mergedrow td[style]').slice(1)
+        .each(function() {
+          $this.parent().addClass('SECTION');
+        }).each(function() {
+          var $this = $(this);
+          section = _.camelCase(cleanText($this.text()));
+          output[section] = [];
+          cells = {};
 
-        entry.push(_.trim($this.find('td:last').parent().children().slice(1).text()));
-
-        if($this.is('.mergedtoprow')) {
-          if($this.next().is('.mergedbottomrow')) {
-            entry.push( _.trim($this.next().find('td:last').text()) );
-            j++;
+          if($this.next().text()) {
+            output[section].push(cleanText($this.next().text()));
           }
-          else {
-            entry.push(_.trim(
-              $this.nextUntil('.mergedbottomrow').find('td:last').each(function() {
-                $(this).parent().children().slice(1).each(function() {
-                  entry.push(_.trim(this.textContent));
-                });
-              })
-              .last().next().find('td:last').text())
-            );
-          }
-        }
-        else if($this.next().is('.mergedrow')) {
-          mergedEls = $this.nextUntil('.mergedbottomrow');
-          j += mergedEls.length;
 
-          mergedEls.find('td:last').each(function() {
-            $(this).parent().children().slice(1).each(function() {
-              entry.push(_.trim(this.textContent));
+          if(!$this.parent().next('.SECTION').length) return;
+
+          $this.parent().nextUntil('.SECTION')
+            .find('td:last-child')
+            .each(function() {
+              subsec = _.camelCase(cleanText($(this).prev().text()));
+              cells[subsec] = cleanText($(this).text());
             });
-          });
-        }
 
-        output[key] = entry;
-        j++;
-      });
+          if(_.keys(cells).length) output[section].push(cells);
+        });
+    });
 
-      callback(_.mapValues(output, function(vals) { return _.filter(vals, _.identity); }));
+    if(_.keys(output).indexOf('') > -1) {
+      _.extend(output, _.first([].concat(output[''])));
+      delete output[''];
     }
+
+    callback(
+      _.mapValues(output, function(val, k) {
+        if(val.length === 1) val = val[0];
+        if(_.isString(val) && val.indexOf('\n') > -1)  val = val.split('\n');
+        return val;
+      })
+    );
   });
 }
 

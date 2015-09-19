@@ -18,6 +18,14 @@ angular.module('govtimeApp')
             controller: 'FooterCtrl',
             templateUrl: 'components/footer/footer.html'
           }
+        },
+        resolve: {
+          states: function($http) {
+            return $http.get('/data/states.json')
+              .then(function(res) {
+                return res.data;
+              });
+          }
         }
       });
   });
