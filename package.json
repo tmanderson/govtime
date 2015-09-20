@@ -35,7 +35,8 @@
     "serve-favicon": "~2.0.1",
     "wiki-infobox": "^0.4.0",
     "wikifetch": "0.0.2",
-    "wikijs": "^0.1.1"
+    "wikijs": "^0.1.1",
+    "xml2js": "^0.4.12"
   },
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
