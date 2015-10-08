@@ -14,7 +14,7 @@ angular.module('govtimeApp', [
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
   })
-  .constant('apikey', '878706002cd6425690499564e5c56da6')
+  .constant('apikey', '')
   .factory('authInterceptor', function($rootScope, $q, $cookies, $injector) {
     var state;
     return {
